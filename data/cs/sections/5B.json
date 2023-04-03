@@ -15,7 +15,7 @@
   ],
   "rules": [
     {
-      "round": "always",
+      "round": "true",
       "always": true,
       "once": true,
       "figures": [
@@ -23,7 +23,9 @@
           "identifier": {
             "type": "monster",
             "name": "city-.*",
-            "tag": "5B"
+            "tags": [
+              "5B"
+            ]
           },
           "type": "gainCondition",
           "value": "infect"

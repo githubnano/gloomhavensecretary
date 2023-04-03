@@ -3,6 +3,7 @@
   "name": "Depths of Delirium",
   "edition": "fh",
   "parent": "27",
+  "marker": "1",
   "monsters": [
     "deep-terror",
     "living-bones"
@@ -27,7 +28,7 @@
       ],
       "objectives": [
         1,
-        "1:C>2?1:0"
+        "1:C>3?1:0"
       ]
     }
   ]

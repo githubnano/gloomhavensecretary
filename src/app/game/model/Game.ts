@@ -3,6 +3,7 @@ import { AttackModifierDeck, defaultAttackModifierCards, GameAttackModifierDeckM
 import { Character, GameCharacterModel } from "./Character";
 import { ScenarioRule, ScenarioRuleIdentifier } from "./data/ScenarioRule";
 import { defaultElementBoard, ElementModel, } from "./Element";
+import { EntityCounter } from "./Entity";
 import { Figure } from "./Figure";
 import { Loot, lootCardIdMigration, LootDeck, LootType } from "./Loot";
 import { GameMonsterModel, Monster } from "./Monster";
@@ -10,13 +11,11 @@ import { GameObjectiveModel, Objective } from "./Objective";
 import { Party } from "./Party";
 import { GameScenarioModel, Scenario } from "./Scenario";
 
-export const GH_PROSPERITY_STEPS = [3, 8, 14, 21, 29, 38, 49, 63];
-export const FH_PROSPERITY_STEPS = [5, 14, 26, 41, 59, 80, 104, 131];
-
 export class Game {
   revision: number = 0;
   edition: string | undefined = undefined;
   figures: Figure[] = [];
+  entitiesCounter: EntityCounter[] = []
   state: GameState = GameState.draw;
   scenario: Scenario | undefined = undefined;
   sections: Scenario[] = [];
@@ -52,7 +51,7 @@ export class Game {
   }
 
   toModel(): GameModel {
-    return new GameModel(this.revision, this.edition, this.figures.map((figure) => figure.name), this.figures.filter((figure) => figure instanceof Character).map((figure) => ((figure as Character).toModel())), this.figures.filter((figure) => figure instanceof Monster).map((figure) => ((figure as Monster).toModel())), this.figures.filter((figure) => figure instanceof Objective).map((figure) => ((figure as Objective).toModel())), this.state, this.scenario && gameManager.scenarioManager.toModel(this.scenario, this.scenario.revealedRooms, this.scenario.custom, this.scenario.custom ? this.scenario.name : "") || undefined, this.sections.map((section) => gameManager.scenarioManager.toModel(section, section.revealedRooms)), this.scenarioRules.map((value) => value.identifier), this.disgardedScenarioRules, this.level, this.levelCalculation, this.levelAdjustment, this.bonusAdjustment, this.ge5Player, this.playerCount, this.round, this.roundResets, this.roundResetsHidden, this.playSeconds, this.totalSeconds, this.monsterAttackModifierDeck.toModel(), this.allyAttackModifierDeck.toModel(), this.elementBoard, this.solo, this.party, this.parties, this.lootDeck, this.lootDeckEnhancements, this.lootDeckFixed, this.lootDeckSections, this.server);
+    return new GameModel(this.revision, this.edition, this.figures.map((figure) => figure.name), this.entitiesCounter, this.figures.filter((figure) => figure instanceof Character).map((figure) => ((figure as Character).toModel())), this.figures.filter((figure) => figure instanceof Monster).map((figure) => ((figure as Monster).toModel())), this.figures.filter((figure) => figure instanceof Objective).map((figure) => ((figure as Objective).toModel())), this.state, this.scenario && gameManager.scenarioManager.toModel(this.scenario, this.scenario.revealedRooms, this.scenario.custom, this.scenario.custom ? this.scenario.name : "") || undefined, this.sections.map((section) => gameManager.scenarioManager.toModel(section, section.revealedRooms)), this.scenarioRules.map((value) => value.identifier), this.disgardedScenarioRules, this.level, this.levelCalculation, this.levelAdjustment, this.bonusAdjustment, this.ge5Player, this.playerCount, this.round, this.roundResets, this.roundResetsHidden, this.playSeconds, this.totalSeconds, this.monsterAttackModifierDeck.toModel(), this.allyAttackModifierDeck.toModel(), this.elementBoard, this.solo, this.party, this.parties, this.lootDeck, this.lootDeckEnhancements, this.lootDeckFixed, this.lootDeckSections, this.server);
   }
 
   fromModel(model: GameModel, server: boolean = false) {
@@ -63,6 +62,8 @@ export class Game {
       model.monsters.map((gmm) => gmm.name).indexOf(figure.name) != -1 ||
       model.objectives.map((gom) => gom.name).indexOf(figure.name) != -1
     );
+
+    this.entitiesCounter = model.entitiesCounter || [];
 
     model.characters.forEach((value) => {
       let character = this.figures.find((figure) => figure instanceof Character && figure.name == value.name && figure.edition == value.edition) as Character;
@@ -313,6 +314,7 @@ export class GameModel {
   revision: number;
   edition: string | undefined;
   figures: string[];
+  entitiesCounter: EntityCounter[];
   characters: GameCharacterModel[];
   monsters: GameMonsterModel[];
   objectives: GameObjectiveModel[];
@@ -346,6 +348,7 @@ export class GameModel {
 
   constructor(revision: number = 0, edition: string | undefined = undefined,
     figures: string[] = [],
+    entitiesCounter: EntityCounter[] = [],
     characters: GameCharacterModel[] = [],
     monsters: GameMonsterModel[] = [],
     objectives: GameObjectiveModel[] = [],
@@ -365,8 +368,8 @@ export class GameModel {
     roundResetsHidden: number[] = [],
     playSeconds: number = 0,
     totalSeconds: number = 0,
-    monsterAttackModifierDeck: GameAttackModifierDeckModel = new GameAttackModifierDeckModel(-1, defaultAttackModifierCards, []),
-    allyAttackModifierDeck: GameAttackModifierDeckModel = new GameAttackModifierDeckModel(-1, defaultAttackModifierCards, []),
+    monsterAttackModifierDeck: GameAttackModifierDeckModel = new GameAttackModifierDeckModel(-1, defaultAttackModifierCards, [], true),
+    allyAttackModifierDeck: GameAttackModifierDeckModel = new GameAttackModifierDeckModel(-1, defaultAttackModifierCards, [], true),
     elementBoard: ElementModel[] = [],
     solo: boolean = false,
     party: Party = new Party(),
@@ -379,6 +382,7 @@ export class GameModel {
     this.revision = revision;
     this.edition = edition;
     this.figures = figures;
+    this.entitiesCounter = JSON.parse(JSON.stringify(entitiesCounter));
     this.characters = characters;
     this.monsters = monsters;
     this.objectives = objectives;

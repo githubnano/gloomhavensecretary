@@ -3,6 +3,10 @@
   "name": "Depths of Delirium",
   "edition": "fh",
   "parent": "27",
+  "parentSections": [
+    "69.2"
+  ],
+  "marker": "4",
   "monsters": [
     "deep-terror",
     "living-bones"
@@ -11,6 +15,9 @@
     {
       "roomNumber": 6,
       "initial": true,
+      "treasures": [
+        24
+      ],
       "monster": [
         {
           "name": "deep-terror",
