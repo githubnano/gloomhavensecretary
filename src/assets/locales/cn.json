@@ -102,12 +102,12 @@
       "title": "{1} {0}",
       "xp": "XP"
     },
-    "remove": "Remove Character",
-    "removeAll": "Remove All"
+    "remove": "删除角色 Character",
+    "removeAll": "全部删除"
   },
   "close": "Close",
   "datamanagement": {
-    ".": "Data Management",
+    ".": "数据管理",
     "addEditionDataUrl": "Add Edition Data Url",
     "addSpoiler": "Add Spoiler",
     "editionDataUrls": {
@@ -117,14 +117,14 @@
       "enable": "Enable Edition",
       "remove": "Remove Edition Data"
     },
-    "exportGame": "Export Game to File",
-    "exportSettings": "Export Settings to File",
-    "importGame": "Import Game from File",
-    "importSettings": "Import Settings from File",
-    "removeAllSpoilers": "Delete all",
+    "exportGame": "导出游戏到文件",
+    "exportSettings": "导出应用配置信息到文件",
+    "importGame": "导入游戏文件",
+    "importSettings": "导入配置文件",
+    "removeAllSpoilers": "全部删除",
     "removeSpoiler": "Remove Spoiler",
-    "resetGame": "Reset Game",
-    "resetSettings": "Reset Settings",
+    "resetGame": "重置游戏",
+    "resetSettings": "重置应用配置",
     "restoreEditionDataUrls": "Restore Defaults",
     "spoilers": "Manage Spoilers"
   },
@@ -356,7 +356,7 @@
       "restore": "Restore defaults",
       "revealAll": "Reveal All?",
       "revealAllConfirm": "Reveal All!",
-      "shuffle": "Shuffle"
+      "shuffle": "洗牌"
     },
     "condition": {
       "bane": "Bane",
@@ -612,22 +612,22 @@
   },
   "menu": {
     "backToMain": "Back to %menu.main%",
-    "main": "Mainmenu"
+    "main": "主菜单"
   },
   "monster": {
-    ".": "Monster",
-    "add": "Add Monster",
+    ".": "怪物",
+    "add": "添加怪物",
     "addEntity": {
-      "boss": "Spawn Boss Monster",
-      "elite": "Spawn Elite Monster",
-      "normal": "Spawn Normal Monster"
+      "boss": "生成boos",
+      "elite": "生成精英",
+      "normal": "生成怪物"
     },
     "boss": "Boss",
     "changeType": "Change type from %monster.{0}% to %monster.{1}%",
     "elite": "Elite",
     "normal": "Normal",
-    "remove": "Remove Monster",
-    "removeAll": "Remove All",
+    "remove": "删除怪物",
+    "removeAll": "全部删除",
     "selectStandees": {
       "all": "Select all standees",
       "boss": "Select all Boss standees",
@@ -659,7 +659,7 @@
     ".": "Party",
     "achievements": "Achievements",
     "campaign": {
-      ".": "活动记录",
+      ".": "成就",
       "achievements": "Global Achievements",
       "donations": "Donations to Sanctuary of the Great Oak",
       "items": "Unlocked Items",
@@ -678,13 +678,13 @@
         "add": "添加玩家"
       },
       "scenarios": {
-        ".": "Scenarios",
+        ".": "场景",
         "addSuccess": "Mark successful",
         "edition": "Edition",
-        "finished": "Finished",
+        "finished": "完成",
         "group": "Group",
         "index": "#",
-        "name": "Name",
+        "name": "场景名称",
         "removeManual": "Remove from Unlocked",
         "removeSuccess": "Remove from successful",
         "unlock": "Unlock Scenario"
@@ -696,7 +696,7 @@
         },
         "campaignStickers": "Campaign Stickers",
         "defense": "Defense",
-        "disable": "Go to Gloomhaven Party Sheet",
+        "disable": "跳转到幽港迷城Go to Gloomhaven Party Sheet",
         "enable": "Go to Frosthaven Campaign Sheet",
         "inspiration": "Inspiration",
         "morale": "Morale",
@@ -887,7 +887,7 @@
       "confirm": "Confirm",
       "conclusion": "Finish scenario with {0}?"
     },
-    "set": "Set Scenario",
+    "set": "设置场景",
     "setup": {
       ".": "Scenario Setup",
       "abilities": "Abilities",
