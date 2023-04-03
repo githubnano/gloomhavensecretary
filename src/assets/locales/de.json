@@ -62,7 +62,10 @@
       "valrath": "Valrath",
       "vermling": "Ratzen"
     },
-    "filter": "Charaktere filtern",
+    "filter": {
+      ".": "Charaktere filtern",
+      "noResult": "Kein Ergebnis"
+    },
     "lootCards": {
       "drawn": "In gezogener Reihenfolge anordnen",
       "sort": "Nach Typ anordnen"
@@ -204,6 +207,7 @@
         "effects": {
           "recoverRandomDiscard": "Hole %game.card.recover% eine zufällig Karte vom Abwurfstapel zurück",
           "refreshItem": "Einen Gegenstand erneuern",
+          "refreshItemFh": "%game.card.recover% einen Gegenstand",
           "refreshSpentItem": "Einen verbrauchten Gegenstand erneuern"
         },
         "type": {
@@ -623,7 +627,10 @@
     "import": "Importieren",
     "location": "Ort",
     "name": "Name",
-    "new": "Neue Gruppe erstellen",
+    "new": {
+      ".": "Neue Gruppe erstellen",
+      "hint": "Während eines Szenarios ist das Erstellen einer neuen Grupp deaktiviert. Beende oder breche das aktuelle Szenario ab um eine neue Grupp zu erstellen."
+    },
     "notes": "Notizen",
     "prosperity": "Wohlstand",
     "remove": "Gruppe löschen",
@@ -712,8 +719,11 @@
     "cancel": "Szenario abbrechen",
     "conclusion": "Lösung",
     "custom": "Benutzerdefiniert",
-    "filter": "Szenario filtern",
-    "filterSuccess": "Abgeschlossene Szenarien ausblenden",
+    "filter": {
+      ".": "Szenario filtern",
+      "noResult": "Kein Ergebnis"
+    },
+    "filterSuccess": "Nur neue Szenarien anzeigen",
     "finish": {
       ".": "Szenario beenden",
       "failure": "Niederlage",
@@ -915,7 +925,7 @@
     },
     "alwaysAllyAttackModifierDeck": {
       ".": "Immer Angriffsmodifikatordeck für Verbündete",
-      "hint": "Immer Frosthaven Regel anwenden, dass Verbündete ein eigenes Angriffsmodifikatordeck verwenden anstelle des Monsterdecks"
+      "hint": "Das zusätzlich das Angriffsmodifikatordeck für Verbündete anzeigen"
     },
     "alwaysHazardousTerrain": {
       ".": "Immer Gefährliches Gelände",
@@ -1390,6 +1400,8 @@
         "addCard": "Karte {1} zu {0} AM Deck hinzufügen",
         "addCardShuffled": "Neue {1} Karte in {0} AM Deck mischen",
         "addCurse": "Fluch zu {0} AM Deck zufügen",
+        "amDeckHide": "{0} AM Deck ausblenden",
+        "amDeckShow": "{0} AM Deck einblenden",
         "draw": "{0} AM Karte ziehen",
         "removeBless": "Segen von {0} AM Deck entfernen",
         "removeCard": "Karte {1} von {0} AM Deck entfernen",

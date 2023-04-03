@@ -62,7 +62,10 @@
       "valrath": "Valrath",
       "vermling": "Vermling"
     },
-    "filter": "Filter Character",
+    "filter": {
+      ".": "Filter Character",
+      "noResult": "No Result"
+    },
     "lootCards": {
       "drawn": "Order by time drawn",
       "sort": "Order by type"
@@ -75,6 +78,10 @@
       "donate": "Donate",
       "donations": "Donations to Sanctuary of the Great Oak",
       "export": "Export",
+      "fh": {
+        "enable": "Go to Frosthaven Character Sheet",
+        "disable": "Go to Gloomhaven Character Sheet"
+      },
       "gold": "Gold",
       "gold-notes": "Gold Notes",
       "import": "Import",
@@ -305,6 +312,7 @@
         "effects": {
           "recoverRandomDiscard": "Recover %game.card.recover% one random card from your dicard pile",
           "refreshItem": "Refresh an item",
+          "refreshItemFh": "%game.card.recover% one item",
           "refreshSpentItem": "Refresh a spent item"
         },
         "type": {
@@ -724,7 +732,10 @@
     "import": "Import",
     "location": "Location",
     "name": "Name",
-    "new": "Create new party",
+    "new": {
+      ".": "Create new Party",
+      "hint": "Creation of new party is disabled during a scenario. Finish or cancel current scenario to create a new party."
+    },
     "notes": "Notes",
     "prosperity": "Prosperity",
     "remove": "Remove party",
@@ -811,8 +822,11 @@
     "cancel": "Cancel Scenario",
     "conclusion": "Conclusion",
     "custom": "Custom",
-    "filter": "Filter Scenario",
-    "filterSuccess": "Hide successfully finished scenarios",
+    "filter": {
+      ".": "Filter Scenario",
+      "noResult": "No Result"
+    },
+    "filterSuccess": "Show new scenarios only",
     "finish": {
       ".": "Finish Scenario",
       "failure": "Failure",
@@ -904,7 +918,7 @@
         "reapply": "Switch back to casual mode"
       },
       "apply": "Finish",
-      "battlegoals": "Battel Goals",
+      "battlegoals": "Battle Goals",
       "cancel": "Cancel",
       "casualWarning": "Casual Mode",
       "casualFhWarning": {
@@ -1015,7 +1029,7 @@
     },
     "alwaysAllyAttackModifierDeck": {
       ".": "Always Attack Modifier Deck for allies",
-      "hint": "Always apply Frosthaven rule that allies uses their own Attack Modifier Deck instead of Monster's one"
+      "hint": "Always show the Attack Modifier Deck for allies"
     },
     "alwaysHazardousTerrain": {
       ".": "Always Hazardous Terrain",
@@ -1177,7 +1191,7 @@
     },
     "interactiveAbilities": {
       ".": "Interactive Abilities",
-      "hint": "On abilitiy cards, click on a highlighted action like summons or element actions to perform that action directly."
+      "hint": "On ability cards, click on a highlighted action like summons or element actions to perform that action directly."
     },
     "interface": "Interface",
     "levelAdjustment": {
@@ -1489,6 +1503,8 @@
         "addCard": "Add {1} card to {0} AM deck",
         "addCardShuffled": "Shuffle new {1} card into {0} AM deck",
         "addCurse": "Add Curse to {0} AM deck",
+        "amDeckHide": "Hide {0} AM deck",
+        "amDeckShow": "Show {0} AM deck",
         "draw": "Draw {0} AM",
         "removeBless": "Remove Bless from {0} AM deck",
         "removeCard": "Remove card {1} from {0} AM deck ",

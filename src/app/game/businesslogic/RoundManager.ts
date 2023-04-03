@@ -105,6 +105,11 @@ export class RoundManager {
     } else if (figure.active && !figure.off) {
       if (settingsManager.settings.activeStandees && figure instanceof Character && figure.summons.find((summon) => summon.active)) {
         figure.summons.forEach((summon) => summon.active = false);
+        this.game.elementBoard.forEach((element) => {
+          if (element.state == ElementState.new) {
+            element.state = ElementState.strong;
+          }
+        })
       } else {
         this.afterTurn(figure);
       }
@@ -362,6 +367,7 @@ export class RoundManager {
     this.game.monsterAttackModifierDeck.fromModel(new AttackModifierDeck().toModel());
     this.game.allyAttackModifierDeck.fromModel(new AttackModifierDeck().toModel());
     this.game.figures = this.game.figures.filter((figure) => figure instanceof Character || this.game.scenario && this.game.scenario.custom);
+    this.game.entitiesCounter = [];
     this.game.lootDeck.fromModel(new LootDeck());
 
     this.game.figures.forEach((figure) => {

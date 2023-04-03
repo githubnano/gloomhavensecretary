@@ -5,7 +5,7 @@
   "parent": "106",
   "rules": [
     {
-      "round": "always",
+      "round": "true",
       "always": true,
       "once": true,
       "spawns": [
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "round": "always",
+      "round": "true",
       "always": true,
       "once": true,
       "figures": [
@@ -66,7 +66,9 @@
           "identifier": {
             "type": "monster",
             "name": ".*",
-            "tag": "spawn-fc-124"
+            "tags": [
+              "spawn-fc-124"
+            ]
           },
           "type": "present"
         },
@@ -74,7 +76,9 @@
           "identifier": {
             "type": "monster",
             "name": ".*",
-            "tag": "spawn-fc-124"
+            "tags": [
+              "spawn-fc-124"
+            ]
           },
           "type": "damage",
           "value": "HP/2"

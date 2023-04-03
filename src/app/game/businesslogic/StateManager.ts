@@ -44,7 +44,6 @@ export class StateManager {
       const gameModel: GameModel = Object.assign(new GameModel(), JSON.parse(local));
       gameModel.server = false;
       this.game.fromModel(gameModel);
-      gameManager.uiChange.emit();
     } else {
       localStorage.setItem("ghs-game", JSON.stringify(this.game.toModel()));
     }
@@ -97,6 +96,8 @@ export class StateManager {
         this.updatePermissions();
       }
     })
+    
+    gameManager.uiChange.emit();
   }
 
   async install() {
@@ -261,7 +262,7 @@ export class StateManager {
           }
           gameManager.game.fromModel(gameModel, true);
           gameManager.stateManager.saveLocal();
-          gameManager.uiChange.emit();
+          gameManager.uiChange.emit(true);
           setTimeout(() => {
             window.document.body.classList.remove('working');
             window.document.body.classList.remove('server-sync');

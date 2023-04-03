@@ -193,7 +193,9 @@ export class ScenarioManager {
       this.applyScenarioData(section, true);
       if (section.rules) {
         section.rules.forEach((rule, index) => {
-          this.addScenarioRule(section, rule, index, true);
+          if (rule.always) {
+            this.addScenarioRule(section, rule, index, true);
+          }
         })
 
         this.filterDisabledScenarioRules();
@@ -282,9 +284,9 @@ export class ScenarioManager {
 
     if (scenarioData.resetRound) {
       if (scenarioData.resetRound == "visible") {
-        this.game.roundResets.push(this.game.round + (this.game.state == GameState.draw ? 1 : 0));
+        this.game.roundResets.push(this.game.round + (this.game.state == GameState.draw ? 0 : -1));
       } else {
-        this.game.roundResetsHidden.push(this.game.round + (this.game.state == GameState.draw ? 1 : 0));
+        this.game.roundResetsHidden.push(this.game.round + (this.game.state == GameState.draw ? 0 : -1));
       }
       this.game.round = this.game.state == GameState.draw ? 0 : 1;
     }
@@ -319,18 +321,25 @@ export class ScenarioManager {
             const monsterName = monsterStandeeData.name.split(':')[0];
             const isAlly = scenarioData.allies && scenarioData.allies.indexOf(monsterName) != -1 || section && gameManager.game.scenario && gameManager.game.scenario.allies && gameManager.game.scenario.allies.indexOf(monsterName) != -1 || false;
             const drawExtra = scenarioData.drawExtra && scenarioData.drawExtra.indexOf(monsterName) != -1 || section && gameManager.game.scenario && gameManager.game.scenario.drawExtra && gameManager.game.scenario.drawExtra.indexOf(monsterName) != -1 || false;
-            const entity = gameManager.monsterManager.spawnMonsterEntity(monsterStandeeData.name, type, scenarioData.edition, isAlly, drawExtra);
-            if (entity) {
-              if (monsterStandeeData.marker) {
-                entity.marker = monsterStandeeData.marker;
+
+            const monster = gameManager.monsterManager.addMonsterByName(monsterStandeeData.name, scenarioData.edition);
+            if (monster) {
+              const entity = gameManager.monsterManager.spawnMonsterEntity(monster, type, isAlly, drawExtra);
+              if (entity) {
+                if (monsterStandeeData.marker) {
+                  entity.marker = monsterStandeeData.marker;
+                }
+                if (monsterStandeeData.tags) {
+                  entity.tags = monsterStandeeData.tags;
+                }
+                if (monsterStandeeData.health) {
+                  entity.health = EntityValueFunction(monsterStandeeData.health)
+                }
+                entities.push(entity);
+                if (entity.marker || entity.tags.length > 0) {
+                  gameManager.addEntityCount(monster, entity);
+                }
               }
-              if (monsterStandeeData.tags) {
-                entity.tags = monsterStandeeData.tags;
-              }
-              if (monsterStandeeData.health) {
-                entity.health = EntityValueFunction(monsterStandeeData.health)
-              }
-              entities.push(entity);
             }
           }
         }
@@ -533,29 +542,40 @@ export class ScenarioManager {
       round = round.replace('C', '' + gameManager.characterManager.characterCount());
     }
 
-    if (round == "always") {
-      add = true
-    } else {
-      try {
-        add = eval(round) && (this.game.state == GameState.next || rule.start && initial);
-      } catch (error) {
-        console.warn("Cannot apply scenario rule: '" + rule.round + "'", "index: " + index, error);
-        add = false;
-      }
+    try {
+      add = eval(round) && (rule.always || this.game.state == GameState.next || rule.start && initial);
+    } catch (error) {
+      console.warn("Cannot apply scenario rule: '" + rule.round + "'", "index: " + index, error);
+      add = false;
     }
 
     if (add) {
       if (rule.figures && rule.figures.filter((figureRule) => figureRule.type == "present" || figureRule.type == "dead").length > 0) {
         rule.figures.filter((figureRule) => figureRule.type == "present" || figureRule.type == "dead").forEach((figureRule) => {
-          const gameplayFigures: Entity[] = gameManager.entitiesByIdentifier(figureRule.identifier, figureRule.scenarioEffect).filter((entity) => gameManager.entityManager.isAlive(entity) && (!(entity instanceof MonsterEntity) || (!(figureRule.identifier?.marker) || (entity instanceof MonsterEntity && entity.marker == figureRule.identifier?.marker && (!(figureRule.identifier?.tag)) || (entity instanceof MonsterEntity && figureRule.identifier?.tag && entity.tags.indexOf(figureRule.identifier?.tag) != -1)))));
+          const gameplayFigures: Entity[] = gameManager.entitiesByIdentifier(figureRule.identifier, figureRule.scenarioEffect).filter((entity) => gameManager.entityManager.isAlive(entity) && (!(entity instanceof MonsterEntity) || (!(figureRule.identifier?.marker) || (entity instanceof MonsterEntity && figureRule.identifier && entity.marker == figureRule.identifier.marker && (!figureRule.identifier.tags || figureRule.identifier.tags.length == 0 || (entity instanceof MonsterEntity && figureRule.identifier.tags.forEach((tag) => entity.tags.indexOf(tag) != -1)))))));
           const tolerance: number = figureRule.value ? EntityValueFunction(figureRule.value.split(':')[0]) : 0;
           add = add && tolerance >= 0 && (figureRule.type == "present" ? gameplayFigures.length > tolerance : gameplayFigures.length <= tolerance);
 
-          if ((figureRule.identifier?.marker || figureRule.identifier?.tag) && !settingsManager.settings.automaticStandees) {
+          if (figureRule.identifier && (figureRule.identifier.marker || figureRule.identifier.tags && figureRule.identifier.tags.length > 0) && !settingsManager.settings.automaticStandees) {
             add = false;
           }
 
         })
+      }
+
+      if (add) {
+        if (rule.figures && rule.figures.filter((figureRule) => figureRule.type == "killed").length > 0) {
+          rule.figures.filter((figureRule) => figureRule.type == "killed").forEach((figureRule) => {
+            const value = EntityValueFunction(figureRule.value || 0);
+            if (!figureRule.identifier) {
+              add = false;
+            } else {
+              const counter = gameManager.entityCounter(figureRule.identifier);
+              add = add && counter && counter.killed >= value || false;
+            }
+
+          })
+        }
       }
 
 

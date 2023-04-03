@@ -6,6 +6,8 @@
     "31"
   ],
   "monsters": [
+    "flaming-bladespinner",
+    "ruined-machine",
     "steel-automaton"
   ],
   "objectives": [
@@ -23,6 +25,139 @@
     "rockroot": 1,
     "arrowvine": 2
   },
+  "rules": [
+    {
+      "round": "true",
+      "always": true,
+      "once": true,
+      "figures": [
+        {
+          "identifier": {
+            "type": "objective",
+            "edition": "objective",
+            "name": "Cabinet"
+          },
+          "type": "dead",
+          "value": "3"
+        }
+      ],
+      "spawns": [
+        {
+          "monster": {
+            "name": "flaming-bladespinner",
+            "player2": "normal",
+            "player3": "normal",
+            "player4": "elite"
+          }
+        }
+      ]
+    },
+    {
+      "round": "true",
+      "always": true,
+      "once": true,
+      "figures": [
+        {
+          "identifier": {
+            "type": "objective",
+            "edition": "objective",
+            "name": "Cabinet"
+          },
+          "type": "dead",
+          "value": "2"
+        }
+      ],
+      "spawns": [
+        {
+          "monster": {
+            "name": "flaming-bladespinner",
+            "player2": "normal",
+            "player3": "normal",
+            "player4": "elite"
+          }
+        }
+      ]
+    },
+    {
+      "round": "true",
+      "always": true,
+      "once": true,
+      "figures": [
+        {
+          "identifier": {
+            "type": "objective",
+            "edition": "objective",
+            "name": "Cabinet"
+          },
+          "type": "dead",
+          "value": "1"
+        }
+      ],
+      "spawns": [
+        {
+          "monster": {
+            "name": "flaming-bladespinner",
+            "player2": "normal",
+            "player3": "normal",
+            "player4": "elite"
+          }
+        }
+      ]
+    },
+    {
+      "round": "true",
+      "always": true,
+      "once": true,
+      "sections": [
+        "14.3"
+      ],
+      "figures": [
+        {
+          "identifier": {
+            "type": "objective",
+            "edition": "objective",
+            "name": "Cabinet"
+          },
+          "type": "dead",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "round": "R % 2 == 0",
+      "start": true,
+      "figures": [
+        {
+          "type": "present",
+          "identifier": {
+            "type": "objective",
+            "edition": "objective",
+            "name": "Cabinet"
+          }
+        }
+      ],
+      "spawns": [
+        {
+          "monster": {
+            "name": "ruined-machine",
+            "player2": "normal",
+            "player3": "normal",
+            "player4": "elite"
+          },
+          "marker": "a"
+        },
+        {
+          "monster": {
+            "name": "ruined-machine",
+            "player2": "normal",
+            "player3": "elite",
+            "player4": "elite"
+          },
+          "marker": "b"
+        }
+      ]
+    }
+  ],
   "rooms": [
     {
       "roomNumber": 1,
@@ -41,6 +176,12 @@
           "player3": "elite",
           "player4": "elite"
         }
+      ],
+      "objectives": [
+        1,
+        1,
+        1,
+        1
       ]
     }
   ]
