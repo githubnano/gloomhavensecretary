@@ -62,7 +62,10 @@
       "valrath": "Valrath",
       "vermling": "Vermling"
     },
-    "filter": "查找角色",
+    "filter": {
+      ".": "查找角色",
+      "noResult": "No Result"
+    },
     "lootCards": {
       "drawn": "Order by time drawn",
       "sort": "Order by type"
@@ -75,6 +78,10 @@
       "donate": "Donate",
       "donations": "Donations to Sanctuary of the Great Oak",
       "export": "Export",
+      "fh": {
+        "enable": "Go to Frosthaven Character Sheet",
+        "disable": "Go to Gloomhaven Character Sheet"
+      },
       "gold": "Gold",
       "gold-notes": "Gold Notes",
       "import": "Import",
@@ -305,6 +312,7 @@
         "effects": {
           "recoverRandomDiscard": "Recover %game.card.recover% one random card from your dicard pile",
           "refreshItem": "Refresh an item",
+          "refreshItemFh": "%game.card.recover% one item",
           "refreshSpentItem": "Refresh a spent item"
         },
         "type": {
@@ -663,6 +671,7 @@
       "achievements": "Global Achievements",
       "donations": "Donations to Sanctuary of the Great Oak",
       "items": "Unlocked Items",
+      "map": "Map",
       "retirements": {
         ".": "Retired Characters",
         "character": "Character",
@@ -723,7 +732,10 @@
     "import": "Import",
     "location": "当前场景",
     "name": "名字",
-    "new": "新建团队",
+    "new": {
+      ".": "新建团队",
+      "hint": "Creation of new party is disabled during a scenario. Finish or cancel current scenario to create a new party."
+    },
     "notes": "Notes",
     "prosperity": "繁荣",
     "remove": "删除团队",
@@ -810,8 +822,11 @@
     "cancel": "Cancel Scenario",
     "conclusion": "Conclusion",
     "custom": "Custom",
-    "filter": "Filter Scenario",
-    "filterSuccess": "Hide successfully finished scenarios",
+    "filter": {
+      ".": "Filter Scenario",
+      "noResult": "No Result"
+    },
+    "filterSuccess": "Show new scenarios only",
     "finish": {
       ".": "Finish Scenario",
       "failure": "Failure",
@@ -903,7 +918,7 @@
         "reapply": "Switch back to casual mode"
       },
       "apply": "Finish",
-      "battlegoals": "Battel Goals",
+      "battlegoals": "Battle Goals",
       "cancel": "Cancel",
       "casualWarning": "Casual Mode",
       "casualFhWarning": {
@@ -947,6 +962,10 @@
     "connect": "Connect",
     "connected": "Connected",
     "connecting": "Connecting",
+    "connectionTries": {
+      ".": "(Tries: {0})",
+      "hint": "It does not appear that a successful connection can be established. You may check your network connection or your connection configuration."
+    },
     "disconnect": "Disconnect",
     "disconnected": "No Connection",
     "force": "Allow local changes",
@@ -957,6 +976,7 @@
       "description": "Description",
       "location": "Location",
       "privacy": "Privacy Policy",
+      "status": "Status Page",
       "website": "Website"
     },
     "list": {
@@ -974,7 +994,10 @@
     },
     "port": "Port",
     "reconnect": "Reconnect",
-    "settings": "Synchronize Settings",
+    "settings": {
+      ".": "Synchronize Settings",
+      "hint": "Synchronize besides the game also the settings for all clients using this option. Certainly, <b>not</b> all settings will be synced, like some options for visuals or the interface."
+    },
     "undefined": "Connection not specified",
     "url": "Host",
     "wss": {
@@ -1006,7 +1029,7 @@
     },
     "alwaysAllyAttackModifierDeck": {
       ".": "Always Attack Modifier Deck for allies",
-      "hint": "Always apply Frosthaven rule that allies uses their own Attack Modifier Deck instead of Monster's one"
+      "hint": "Always show the Attack Modifier Deck for allies"
     },
     "alwaysHazardousTerrain": {
       ".": "Always Hazardous Terrain",
@@ -1159,16 +1182,16 @@
       "hint": "Hide stats of not spawned monster"
     },
     "hints": {
-      ".": "Show hints",
-      "hint": "Show shortscuts and hints next to the main menu"
+      ".": "显示提示",
+      "hint": "在主菜单旁边显示快捷方式和提示"
     },
     "initiativeRequired": {
       ".": "Initiative is required",
       "hint": "If unchecked, the order of the entities must be set manually with drag&drop "
     },
     "interactiveAbilities": {
-      ".": "Interactive Abilities",
-      "hint": "On abilitiy cards, click on a highlighted action like summons or element actions to perform that action directly."
+      ".": "能力卡快捷操作",
+      "hint": "在能力卡上，单击突出显示的动作（如召唤或元素动作）以直接执行该动作。"
     },
     "interface": "Interface",
     "levelAdjustment": {
@@ -1240,10 +1263,10 @@
       "hint": "Automatically apply treasure rewards: give gold, XP etc. to looting character, draw random side scenario or item design etc."
     },
     "zoom": {
-      ".": "Zoom",
-      "in": "Zoom in",
-      "out": "Zoom out",
-      "reset": "Reset zoom"
+      ".": "缩放",
+      "in": "放大",
+      "out": "缩小",
+      "reset": "重置缩放设置"
     }
   },
   "spoiler": {
@@ -1480,6 +1503,8 @@
         "addCard": "Add {1} card to {0} AM deck",
         "addCardShuffled": "Shuffle new {1} card into {0} AM deck",
         "addCurse": "Add Curse to {0} AM deck",
+        "amDeckHide": "Hide {0} AM deck",
+        "amDeckShow": "Show {0} AM deck",
         "draw": "Draw {0} AM",
         "removeBless": "Remove Bless from {0} AM deck",
         "removeCard": "Remove card {1} from {0} AM deck ",
